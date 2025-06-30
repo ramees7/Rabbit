@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import ProductGrid from "./ProductGrid";
 
 const selectedProduct = {
   name: "Stylish jacket",
@@ -22,6 +23,53 @@ const selectedProduct = {
     },
   ],
 };
+
+const similarProducts = [
+  {
+    _id: "1",
+    name: "Casual Shirt",
+    price: 45,
+    images: [
+      {
+        url: "https://picsum.photos/500/500?/random=3",
+        altText: "Casual Shirt",
+      },
+    ],
+  },
+  {
+    _id: "2",
+    name: "Leather Boots",
+    price: 85,
+    images: [
+      {
+        url: "https://picsum.photos/500/500?/random=4",
+        altText: "Leather Boots",
+      },
+    ],
+  },
+  {
+    _id: "3",
+    name: "Denim Jeans",
+    price: 60,
+    images: [
+      {
+        url: "https://picsum.photos/500/500?/random=5",
+        altText: "Denim Jeans",
+      },
+    ],
+  },
+  {
+    _id: "4",
+    name: "Wool Sweater",
+    price: 70,
+    images: [
+      {
+        url: "https://picsum.photos/500/500?/random=6",
+        altText: "Wool Sweater",
+      },
+    ],
+  },
+];
 const ProductDetails = () => {
   const [mainImage, setMainImage] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
@@ -41,15 +89,19 @@ const ProductDetails = () => {
   }, []);
   const handleAddToCart = () => {
     if (!selectedSize || !selectedColor) {
-      toast.error("Please select size and color before adding to cart.");
+      toast.error("Please select size and color before adding to cart.", {
+        duration: 1000,
+      });
       return;
     }
     setIsButtonDisabled(true);
     // Simulate adding to cart
     setTimeout(() => {
-      alert("Product added to cart successfully!");
+      toast.success("Product added to cart successfully!", {
+        duration: 1000,
+      });
       setIsButtonDisabled(false);
-    }, 1000);
+    }, 500);
   };
   return (
     <div className="p-6">
@@ -70,11 +122,13 @@ const ProductDetails = () => {
           </div>
           <div className="md:w-1/2 ">
             <div className="mb-4">
-              <img
-                src={mainImage}
-                alt={"Main Product Image"}
-                className="w-full h-auto  object-cover rounded-lg"
-              />
+              {mainImage ? (
+                <img
+                  src={mainImage}
+                  alt="Main Product Image"
+                  className="w-full h-auto object-cover rounded-lg"
+                />
+              ) : null}
             </div>
           </div>
           {/* mobile thumbnail view */}
@@ -160,9 +214,14 @@ const ProductDetails = () => {
             </div>
             <button
               onClick={handleAddToCart}
-              className="bg-black text-white py-2 px-6 rounded w-full mb-4 uppercase"
+              disabled={isButtonDisabled}
+              className={`bg-black text-white py-2 px-6 rounded w-full mb-4 uppercase ${
+                isButtonDisabled
+                  ? "opacity-50 cursor-not-allowed"
+                  : "hover:bg-gray-900"
+              }`}
             >
-              Add to Cart
+              {isButtonDisabled ? "Adding..." : "Add to Cart"}
             </button>
             <div className="mt-10 text-gray-700">
               <h3 className="text-xl font-bold mb-4">Characteristics: </h3>
@@ -180,6 +239,12 @@ const ProductDetails = () => {
               </table>
             </div>
           </div>
+        </div>
+        <div className="mt-20">
+          <h2 className="text-2xl text-center font-medium mb-4">
+            You May Also Like
+          </h2>
+          <ProductGrid products={similarProducts} />
         </div>
       </div>
     </div>
