@@ -28,7 +28,7 @@ const Navbar = () => {
         </div>
         <div className="hidden md:flex space-x-6">
           <Link
-            to={"#"}
+            to={"collections/all"}
             className="text-gray-700 hover:text-black text-sm font-medium uppercase"
           >
             Men
@@ -90,38 +90,37 @@ const Navbar = () => {
           <h2 className="text-xl font-semibold mb-4">Menu</h2>
           <nav className="space-y-4">
             <Link
-              to={"#"}
+              to={"/collections/all"}
               onClick={toggleNavDrawer}
               className="block text-gray-600 hover:text-black"
             >
-                Men
+              Men
             </Link>
             <Link
               to={"#"}
               onClick={toggleNavDrawer}
               className="block text-gray-600 hover:text-black"
             >
-                Women
+              Women
             </Link>
             <Link
               to={"#"}
               onClick={toggleNavDrawer}
               className="block text-gray-600 hover:text-black"
             >
-                Top Wear
+              Top Wear
             </Link>
             <Link
               to={"#"}
               onClick={toggleNavDrawer}
               className="block text-gray-600 hover:text-black"
             >
-                Bottom Wear
+              Bottom Wear
             </Link>
           </nav>
         </div>
       </div>
     </>
-
   );
 };
 

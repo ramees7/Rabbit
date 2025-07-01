@@ -1,4 +1,4 @@
-import Home from "../../pages/Home";
+import { Outlet } from "react-router";
 import Footer from "../Common/Footer";
 import Header from "../Common/Header";
 
@@ -7,7 +7,7 @@ const UserLayout = () => {
     <div>
       <Header />
       <main>
-        <Home />
+        <Outlet />
       </main>
       <Footer />
     </div>
