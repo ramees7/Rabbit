@@ -1,16 +1,16 @@
 import { Link } from "react-router";
 
 const AdminHomePage = () => {
-  const orders = [
-    {
-      _id: 12121,
-      user: {
-        name: "Jhon Doe",
-      },
-      totalPrice: 110,
-      status: "Processing",
-    },
-  ];
+  // const orders = [
+  //   {
+  //     _id: 12121,
+  //     user: {
+  //       name: "Jhon Doe",
+  //     },
+  //     totalPrice: 110,
+  //     status: "Processing",
+  //   },
+  // ];
   return (
     <div className="max-w-7xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
