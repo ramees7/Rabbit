@@ -28,8 +28,24 @@ router.put("/:id", protect, admin, async (req, res) => {
 
       const updatedOrder = await order.save();
       res.json(updatedOrder);
-    }else{
-        res.status(404).json({message:"Order not found"})
+    } else {
+      res.status(404).json({ message: "Order not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
+// delete an order
+router.delete("/:id", protect, admin, async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+      await order.deleteOne();
+      res.json({ message: "Order Removed" });
+    } else {
+      res.status(404).json({ message: "Order not found" });
     }
   } catch (error) {
     console.error(error);
