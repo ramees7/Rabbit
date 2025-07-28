@@ -1,5 +1,5 @@
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
-const PayPalButton = ({ amount, onSuccess, onError }) => {
+const ButtonPayPal = ({ amount, onSuccess, onError }) => {
   return (
     <PayPalScriptProvider
       options={{
@@ -22,4 +22,4 @@ const PayPalButton = ({ amount, onSuccess, onError }) => {
   );
 };
 
-export default PayPalButton;
+export default ButtonPayPal ;
