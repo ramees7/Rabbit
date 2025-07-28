@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/admin`;
+const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api`;
 const USER_TOKEN = `Bearer ${localStorage.getItem("userToken")}`;
 
 // async thunk to fetch admin products
@@ -9,7 +9,7 @@ export const fetchAdminProducts = createAsyncThunk(
   "adminProducts/fetchAdminProducts",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${API_URL}/products`, {
+      const response = await axios.get(`${API_URL}/admin/products`, {
         headers: {
           Authorization: USER_TOKEN,
         },
@@ -27,7 +27,7 @@ export const createProduct = createAsyncThunk(
   "adminProducts/createProduct",
   async (productData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${API_URL}/products`, productData, {
+      const response = await axios.post(`${API_URL}/admin/products`, productData, {
         headers: {
           Authorization: USER_TOKEN,
         },
@@ -46,7 +46,7 @@ export const updateProduct = createAsyncThunk(
   async ({ id, productData }, { rejectWithValue }) => {
     try {
       const response = await axios.put(
-        `${API_URL}/products/${id}`,
+        `${API_URL}/admin/products/${id}`,
         productData,
         {
           headers: {
